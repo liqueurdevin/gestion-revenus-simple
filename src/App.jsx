@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 
-function App() {
+function Dashboard() {
   const [expenses, setExpenses] = useState(() => {
     const saved = localStorage.getItem("expenses");
     return saved ? JSON.parse(saved) : [];
@@ -73,8 +74,36 @@ function App() {
             </div>
           ))}
         </div>
+        <Link to="/summary" className="text-blue-500 underline">
+          Voir le Récapitulatif
+        </Link>
       </div>
     </div>
+  );
+}
+
+function Summary() {
+  return (
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="max-w-full mx-auto">
+        <h1 className="text-3xl font-bold text-blue-900 mb-6">
+          Récapitulatif
+        </h1>
+        <p>(À implémenter)</p>
+        <Link to="/" className="text-blue-500 underline">
+          Retour
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/summary" element={<Summary />} />
+    </Routes>
   );
 }
 
